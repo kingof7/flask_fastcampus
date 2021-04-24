@@ -1,6 +1,6 @@
 @echo off
 
-set "VIRTUAL_ENV=C:\python-workspace\fastcampus\venvs"
+set "VIRTUAL_ENV=C:\pycharm-workspace\flask_fastcampus\venvs"
 
 if defined _OLD_VIRTUAL_PROMPT (
     set "PROMPT=%_OLD_VIRTUAL_PROMPT%"

@@ -4,8 +4,9 @@ from sqlalchemy import create_engine
 from sqlalchemy_utils import database_exists, create_database
 from models import db
 from models import Fcuser
+from flask import session
 from flask_wtf.csrf import CSRFProtect
-from forms import RegisterForm
+from forms import RegisterForm, LoginForm
 
 app = Flask(__name__)
 
@@ -21,11 +22,23 @@ def register():
 
         db.session.add(fcuser)
         db.session.commit()
-        print('Success')
-
-        return redirect('/')
-
+        return "가입 완료"
     return render_template('register.html', form=form)
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    form = LoginForm()
+    if form.validate_on_submit():
+        session['userid'] = form.data.get('userid')
+        return redirect('/')
+    return render_template('login.html', form=form)
+
+
+@app.route('/logout', methods=['GET'])
+def logout():
+    session.pop('userid', None)
+    return redirect('/')
 
 
 @app.route('/')
