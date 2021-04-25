@@ -37,7 +37,7 @@ def login():
 
 @app.route('/logout', methods=['GET'])
 def logout():
-    session.pop('userid', None)
+    session.pop('userid', None) #dic안에 값 꺼내서 삭제
     return redirect('/')
 
 

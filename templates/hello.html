@@ -5,10 +5,10 @@
 </head>
 <body>
     <strong>Hello World!</strong>
-    {% if session %}
-        <div>
-            {{ session.userid }}님 환영합니다!
-        </div>
+    {% if session.userid %}
+        {{ session.userid }} <a href="/logout">로그아웃</a>
+    {% else %}
+        <a href="/login">로그인</a>
     {% endif %}
 </body>
 </html>
